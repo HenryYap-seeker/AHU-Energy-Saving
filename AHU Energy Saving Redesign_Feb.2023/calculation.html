@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.6/katex.min.css">
+    <link rel="stylesheet" href="css/main_with-space-around.css">
+    <title>AHU Energy Saving UI Redesign - Calculation</title>
+</head>
+<body onload="Calculation()">
+    <div class="wrapper">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="calculation.html" class="active">Reduce AHU Energy Consumption</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cabinet_size.html">Reduce AHU Cabinet Size</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="intro-text-section">
+                <div class="intro-text">
+                    <p>In the context of increasing energy prices and the imperative of reducing CO2 emissions, the energy consumption related to air filters is in the focus of attention.</p>
+                    <p>The energy consumption of air filters is determined by:
+                        <ul>
+                            <li>The volume flow rate</li>
+                            <li>The fan efficiency</li>
+                            <li>The operation time</li>
+                            <li>The average pressure drop</li>
+                        </ul>
+                    </p>
+                    <p>Therefore, by equipping energy-efficient filters with high filtration efficiency into the AHUs, <strong>costs and CO2 footprint can be reduce significantly.</strong></p>
+                </div>
+                <div class="intro-img">
+                    <div>
+                        <img src="img/AHUdesign.exr_888-750x400.png" alt="AHU 3D diagram" width="450px">
+                    </div>
+                    <div>
+                        <img src="img/filters/bag-filter.png" alt="bag filter" width="160">
+                        <img src="img/filters/v-bank-filter.png" alt="v bank filter" width="160">
+                        <img src="img/filters/EAC-with-washable.png" alt="eac filter" width="160">
+                    </div>
+                </div>
+            </div>
+            <div class="calc-main">
+                <div class="calc-3">
+                    <strong style="font-size: 2rem; font-style: italic;">AHU Configuration</strong>
+                    <div class="calc-label">
+                        <label for="input1">AHU Air Flow</label>
+                        <div class="input-group-test">
+                            <input type="number" class="calc-input" value="50000" id="input1" onchange="Calculation()" onkeyup="Calculation()">
+                            <span class="calc-input-uom">CMH</span>
+                        </div>
+                    </div>
+                    <div class="calc-label">
+                        <label for="input2">Type of Second Filter Stage</label>
+                        <div class="input-group-test">
+                            <select class="calc-dropdown" id="input2" onchange="Calculation()">
+                                <option>Bag Filter</option>
+                                <option>Mini-pleated Panel Filter</option>
+                                <option>V-Bank Mini-pleated Filter</option>
+                                <option>Box Type Rigid Filter</option>
+                                <option>Separator Box Filter</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="calc-label">
+                        <label for="input3">Filtration Efficiency</label>
+                        <div class="input-group-test">
+                            <select class="calc-dropdown" id="input3" onchange="Calculation()">
+                                <option>M6</option>
+                                <option>F7</option>
+                                <option>F8</option>
+                                <option>F9</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="calc-label">
+                        <label for="input4">Yearly Operating Time, t</label>
+                        <div class="input-group-test">
+                            <input type="text" class="calc-input" value="6000" id="input4" onchange="Calculation()" onkeyup="Calculation()">
+                            <span class="calc-input-uom">h</span>
+                        </div>
+                    </div>
+                    <div class="calc-label">
+                        <label for="input5">Efficiency of AHU Fan, η</label>
+                        <div class="input-group-test">
+                            <input type="number" class="calc-input" value="50.0" id="input5" onchange="Calculation()" onkeyup="Calculation()">
+                            <span class="calc-input-uom">%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calc-3">
+                    <strong style="font-size: 2rem; font-style: italic;">Filters Energy consumption</strong>
+                    <p>Energy consumption of air filters is calculated as following :</p>
+                    <div class="math_form mb-3">
+                        <p class="math">\displaystyle \displaystyle W = {Air Flow \cdot Avg. Presure Drop \cdot t
+                            \over \eta \cdot 1000}</p>
+                    </div>
+                    <p>where,</p>
+                    <ul class="eqn-symbols">
+                        <li>W is the Yearly Energy Consumption</li>
+                        <li>Air Flow in cubic meter per second</li>
+                        <li>Average Pressure Drop in pascal (Pa)</li>
+                    </ul>
+                    <div class="res-tab">
+                        <div class="res1">
+                            <p>Air Flow = <code id="airFlow-output">13.89</code>m3/s</p>
+                            <p>Average Pressure Drop = <code id="pd-output">10</code>Pa</p>
+                            <p>Fan Efficiency, &eta; = <code id="fanEff-output">0.5</code></p>
+                            <p>Annual Time of Operation = <code id="time-output">6000</code>h</p>
+                            <p>Yearly Energy Consumption,<br>  W = (<code id="airFlow-output">13.90</code>*<code id="pd-output">105</code>*<code id="time-output">6000</code>) / (<code id="fanEff-output">0.5</code>*1000)<br>    = <code id="yearlyEnergyConsumption">17501</code> kWh/a</p>
+                        </div>
+                    </div>
+
+                    <div class="grid-test">
+                        <div class="test-grid-item" style="justify-content: left;">Energy Consumption</div>
+                        <div class="test-grid-item"><strong><code id="yearlyEnergyConsumption">17501</code></strong></div>
+                        <div class="test-grid-item">kWh</div>
+                        <div class="test-grid-item" style="justify-content: left;">Cost</div>
+                        <div class="test-grid-item"><strong><code id="yearlyEnergyCost">3500</code></strong></div>
+                        <div class="test-grid-item">USD</div>
+                    </div>
+                </div>
+
+
+                <div class="calc-3">
+                    <strong style="font-size: 2rem; font-style: italic;">Annual Energy Saving</strong>
+                    <p>Commercial Electricity Price Reference</p>
+                    <ul class="eqn-symbols">
+                        <li>Norway 0.168 USD/kWh</li>
+                        <li>Singapore 0.235 USD/kWh</li>
+                        <li>Australia 0.242 USD/kWh</li>
+                        <li>United Kingdom 0.414 USD/kWh</li>
+                    </ul>
+
+                    <div class="calc-label">
+                        <label for="input6">Commercial Electricity Rate</label>
+                        <div class="input-group-test">
+                            <input type="text" class="calc-input" value="0.200" id="input6" onchange="Calculation()" onkeyup="Calculation()">
+                            <span class="calc-input-uom">USD/kWh</span>
+                        </div>
+                    </div>
+                    <p>EAC Yearly Energy Consumption</p>
+                    <div class="math_form mb-3">
+                        <p class="math">W_{EAC} = {Air Flow \cdot Avg. Presure Drop \cdot t
+                            \over \eta \cdot 1000} + \scriptsize Power_{EAC}</p>
+                    </div>
+                    <div class="res-tab">
+                        <div class="res2">
+                            <p>Air Flow = <code id="airFlow-output">13.89</code>m3/s</p>
+                            <p>Average Pressure Drop = 40Pa</p>
+                            <p>Fan Efficiency, &eta; = <code id="fanEff-output">0.5</code></p>
+                            <p>Annual Time of Operation = <code id="time-output">6000</code>h</p>
+                            <p>Yearly Energy Consumption,<br>  W = (<code id="airFlow-output">13.90</code>*40*<code id="time-output">6000</code>) / (<code id="fanEff-output">0.5</code>*1000)+<code id="eacPower">2735</code><br>    = <code id="yearlyACEnergyConsumption">9403</code> kWh/a</p>
+                        </div>
+                    </div>
+
+                    <div class="grid-test">
+                        <div class="test-grid-item" style="justify-content: left;">Energy Consumption</div>
+                        <div class="test-grid-item"><strong><code id="yearlyACEnergyConsumption">9403</code></strong></div>
+                        <div class="test-grid-item">kWh</div>
+                        <div class="test-grid-item" style="justify-content: left;">Cost</div>
+                        <div class="test-grid-item"><strong><code id="yearlyEACEnergyCost">1880</code></strong></div>
+                        <div class="test-grid-item">USD</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table">
+                <table id="res-table">
+                    <tr>
+                        <th></th>
+                        <td class="uom-cell"></td>
+                        <th>Current Configuration</th>
+                        <th>EAC Upgrade</th>
+                        <th>Difference</th>
+                    </tr>
+                    <tr>
+                        <th>Air Flow Rate</th>
+                        <td class="uom-cell">m3/h</td>
+                        <td>50000</td>
+                        <td>50000</td>
+                        <td class="empty-cell"></td>
+                    </tr>
+                    <tr>
+                        <th>Filtration Efficiency</th>
+                        <td class="uom-cell"></td>
+                        <td>M6</td>
+                        <td>F8</td>
+                        <td class="empty-cell"></td>
+                    </tr>
+                    <tr>
+                        <th>Operating Hours</th>
+                        <td class="uom-cell">h</td>
+                        <td>6000</td>
+                        <td>6000</td>
+                        <td class="empty-cell"></td>
+                    </tr>
+                    <tr>
+                        <th>Yearly Energy Consumption</th>
+                        <td class="uom-cell">kWh</td>
+                        <td>17501</td>
+                        <td>9403</td>
+                        <td class="result-cell">8098</td>
+                    </tr>
+                    <tr>
+                        <th>Yearly Electricity Costs</th>
+                        <td class="uom-cell">USD</td>
+                        <td>3500</td>
+                        <td>1880</td>
+                        <td class="result-cell">1602</td>
+                    </tr>
+                    <tr>
+                        <th>Annual Filtration Cost<br>(EAC using 5 years depreciation)</th>
+                        <td class="uom-cell">USD</td>
+                        <td>294</td>
+                        <td>1000</td>
+                        <td class="result-cell">-706</td>
+                    </tr>
+                    <tr>
+                        <th>CO2 Emissions (with 250g/kWh)</th>
+                        <td class="uom-cell">tCO2</td>
+                        <td>4.4</td>
+                        <td>2.4</td>
+                        <td class="result-cell">2</td>
+                    </tr>
+                </table>
+    
+            </div>
+
+            <div class="home-bottom-link">
+                <h2>Next:</h2>
+                <ul>
+                    <li><a href="cabinet_size.html">Reduce AHU Cabinet Size</a></li>
+                    <li><a href="mailto:henry.yap@mayairgroup.com">Contact</a></li>
+                </ul>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.6/katex.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+        const mathElement = document.getElementsByClassName("math");
+        const macros = {};
+        for (let element of mathElement) {
+            katex.render(element.textContent, element, {
+                throwOnError: false,
+                macros,
+            });
+        }
+    </script>
+    <script src="js/calculation.js"></script>
+</body>
+</html>

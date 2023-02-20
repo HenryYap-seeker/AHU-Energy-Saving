@@ -1,0 +1,183 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins';
+    font-size: 1.6rem;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+header {
+    align-items: center;
+    border-bottom: 2px solid black;
+}
+
+nav {
+    margin: 2em;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    gap: 11em;
+    list-style-type: none;
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+}
+
+nav ul li a.active:before {
+    position: absolute;
+    content: '';
+    width: 35%;
+    border-bottom: 2px solid black;
+    bottom: -6px;
+}
+
+nav ul li a:before {
+    position: absolute;
+    content: '';
+    width: 0%;
+    border-bottom: 2px solid grey;
+    bottom: -6px;
+    transition: .3s;
+}
+
+/* Hero Section */
+
+main {
+    margin: 2em 2em 0 2em;
+}
+
+.intro-section {
+    height: 25rem;
+    padding-bottom: 5em;
+}
+
+.vl {
+    border-left: 2px solid black;
+    height:inherit;
+    position: absolute;
+    right: 50%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.intro-label {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    width: 28em;
+}
+
+.intro-left {
+    padding-left: 3em;
+}
+
+.intro-right {
+    padding-left: 10.5em;
+}
+
+.bold-label {
+    font-weight: 600;
+    margin: 0;
+    margin-top: 1.6em;
+}
+
+.intro-dropdown {
+    padding: 0.5em;
+    border-radius: 5px;
+    width: 12em;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.intro-label-result {
+    margin: 0;
+    padding: 0.5em;
+    padding-left: 1em;
+}
+
+.intro-text-section {
+    display: flex;
+    /* padding-left: 0.5em; */
+    margin: 0;
+}
+
+.intro-text {
+    width: 55%;
+    font-size: 2rem;
+}
+
+.intro-img {
+    flex-grow: 1;
+    display: grid;
+    grid-gap: 2em;
+    justify-content: center;
+}
+
+.index-bottom-link {
+    padding: 0 0 25em 0.5em;
+}
+
+.calc-main {
+    display: flex;
+    margin: 0;
+    margin-top: 2em;
+}
+
+
+.calc-input {
+    padding: 0.6em;
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 10em;
+    font-size: 1.6rem;
+}
+
+.calc-input-uom {
+    padding: 0.4em;
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 2em;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-left: -.5rem;
+}
+
+.calc-dropdown {
+    padding: 0.5em;
+    border-radius: 5px;
+    width: 12em;
+    font-size: 1.6rem;
+}
+
+.calc-left {
+    width: 33.33%;
+}
+
+/* Microinteractions */
+
+nav ul li a:hover:before {
+    width: 35%;
+}
